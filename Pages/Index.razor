@@ -1,7 +1,10 @@
 ﻿@page "/"
-
-<MudText Align="Align.Center" Typo="Typo.h3">ARH Workstation Name Generator</MudText>
-
+<MudImage Style="display: block; margin-left: auto; margin-right: auto; width: 25%; height: 30%;" Src="https://www.arh.org/wp-content/uploads/2019/10/main-arh-logo-new.png" Alt="ARH Logo" Elevation="0"/>
+<MudAlert Severity="Severity.Error" Class=@errorVis>One or more fields are blank. Review your selections.</MudAlert>
+ <MudContainer MaxWidth="MaxWidth.Medium">
+ <MudPaper Class="pa-16 ma-2" Elevation="3">
+    <MudText Align="Align.Center" Typo="Typo.h5">@Name</MudText>
+</MudPaper>
 <MudGrid Spacing="10" Justify="Justify.Center">
     <MudItem xs="12">
         <MudPaper Class="pa-16 ma-2" Elevation="3">
@@ -33,11 +36,7 @@
         </MudPaper>
     </MudItem>
 </MudGrid>
-<MudPaper Class="pa-16 ma-2" Elevation="3">
-    <MudText Align="Align.Center" Typo="Typo.h5">@Name</MudText>
-</MudPaper>
-<MudAlert Severity="Severity.Error" Class=@errorVis>One or more fields are blank. Review your selections.</MudAlert>
-
+ </MudContainer>
 @code {
     public string Name { get; set; } = "Workstation 1";
     public string Location { get; set; }
