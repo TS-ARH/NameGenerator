@@ -1,7 +1,62 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<MudText Align="Align.Center" Typo="Typo.h3">ARH Workstation Name Generator</MudText>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Hello, world!</MudText>
-<MudText Class="mb-8">Welcome to your new app, powered by MudBlazor!</MudText>
-<MudAlert Severity="Severity.Normal">You can find documentation and examples on our website here: <MudLink Href="https://mudblazor.com" Typo="Typo.body2" Color="Color.Inherit"><b>www.mudblazor.com</b></MudLink></MudAlert>
+<MudGrid Spacing="10" Justify="Justify.Center">
+    <MudItem xs="12">
+        <MudPaper Class="pa-16 ma-2" Elevation="3">
+<MudItem>
+            <MudSelect T="string" Label="Location" AnchorOrigin="Origin.BottomCenter" @bind-Value="@Location">
+                <MudSelectItem Value="@("AA	Beckley Home Health")" />
+                <MudSelectItem Value="@("AB	Home Health Logan")" />
+                <MudSelectItem Value="@("AH	Beckley Hospital")" />
+                <MudSelectItem Value="@("AI	Beckley Cardiology Associates")" />
+                <MudSelectItem Value="@("AJ	Beckley Primary Care")" />
+            </MudSelect>
+</MudItem>
+<MudItem>
+            <MudSelect T="string" Label="Department" AnchorOrigin="Origin.BottomCenter" @bind-Value="@Department">
+                <MudSelectItem Value="@("HOME	Home Health")" />
+                <MudSelectItem Value="@("ONCO	Oncology")" />
+                <MudSelectItem Value="@("MESU	Med Surg")" />
+                <MudSelectItem Value="@("ADMI	Admissions")" />
+                <MudSelectItem Value="@("ADMS	Administration")" />
+            </MudSelect>
+</MudItem>
+<MudItem>
+            <MudSelect T="string" Label="Device Type" AnchorOrigin="Origin.BottomCenter" @bind-Value="@DeviceType">
+                <MudSelectItem Value="@("DT Desktop")" />
+                <MudSelectItem Value="@("LT Laptop")" />
+            </MudSelect>
+</MudItem>
+<MudButton Class="mt-4" Variant="Variant.Filled" Style="background-color: #808080; color: white;" FullWidth="true" OnClick="BtnOnClick">Generate</MudButton>
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+<MudPaper Class="pa-16 ma-2" Elevation="3">
+    <MudText Align="Align.Center" Typo="Typo.h5">@Name</MudText>
+</MudPaper>
+<MudAlert Severity="Severity.Error" Class=@errorVis>One or more fields are blank. Review your selections.</MudAlert>
+
+@code {
+    public string Name { get; set; } = "Workstation 1";
+    public string Location { get; set; }
+    public string Department {get; set;}
+    public string DeviceType {get; set;}
+    public string errorVis {get; set;} = "invisible";
+
+    protected void BtnOnClick()
+    {
+        if(Location == null || Department == null || DeviceType == null)
+        {
+            errorVis = "visible";
+            return;
+        }
+
+        string abr = Location.Substring(0,2);
+        string deptAbr = Department.Substring(0,4);
+        string devType = DeviceType.Substring(0,2);
+        Name = abr + deptAbr + devType + "##";
+        errorVis = "invisible";
+    }
+}
