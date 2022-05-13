@@ -6,8 +6,18 @@
 
 <MudLayout>
     <MudAppBar Elevation="0" Style="background-color: #73233C;">
+         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
         <MudText Align="Align.Center" Typo="Typo.h6">ARH Workstation Name Generator</MudText>
     </MudAppBar>
+       <MudDrawer @bind-Open="@open" Elevation="1">
+        <MudDrawerHeader>
+            <MudText Typo="Typo.h6">ARH Workstation Name Generator</MudText>
+        </MudDrawerHeader>
+        <MudNavMenu>
+            <MudNavLink Match="NavLinkMatch.All" href="/">Name Generator</MudNavLink>
+            <MudNavLink Match="NavLinkMatch.All" href="/decoder">Decoder</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.Large">
             @Body
@@ -16,10 +26,10 @@
 </MudLayout>
 
 @code {
-    bool _drawerOpen = true;
+    bool open = false;
 
-    void DrawerToggle()
+    void ToggleDrawer()
     {
-        _drawerOpen = !_drawerOpen;
+        open = !open;
     }
 }

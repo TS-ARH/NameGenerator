@@ -1,57 +1,38 @@
-﻿@page "/"
+@page "/decoder"
 <MudImage Style="display: block; margin-left: auto; margin-right: auto; width: 25%; height: 30%;" Src="https://www.arh.org/wp-content/uploads/2019/10/main-arh-logo-new.png" Alt="ARH Logo" Elevation="0"/>
-<MudAlert Severity="Severity.Error" Class=@errorVis>One or more fields are blank. Review your selections.</MudAlert>
+<MudAlert Severity="Severity.Error" Class=@errorVis>@error</MudAlert>
  <MudContainer MaxWidth="MaxWidth.Medium">
  <MudPaper Class="pa-16 ma-2" Elevation="3">
-    <MudText Align="Align.Center" Typo="Typo.h5">@Name</MudText>
+      <MudTextField @bind-Value="@Name" Label="Device Name" Variant="Variant.Text"></MudTextField>
 </MudPaper>
 <MudGrid Spacing="10" Justify="Justify.Center">
     <MudItem xs="12">
         <MudPaper Class="pa-16 ma-2" Elevation="3">
 <MudItem>
-            <MudSelect T="string" Label="Location" AnchorOrigin="Origin.BottomCenter" @bind-Value="@Location" Colors="Color.Red">
-                <MudSelectItem Value="@("AH-Beckley Home Health")" />
-                <MudSelectItem Value="@("BH-Barbourville")" />
-                <MudSelectItem Value="@("CH-Tug Valley")" />
-                <MudSelectItem Value="@("DH-Highlands")" />
-                <MudSelectItem Value="@("EH-McDowell")" />
-                <MudSelectItem Value="@("FH-Hazard")" />
-                <MudSelectItem Value="@("GH-Whitesburg")" />
-                <MudSelectItem Value="@("HH-Mary Breck")" />
-                <MudSelectItem Value="@("IH-Summers Co")" />
-                <MudSelectItem Value="@("JH-Harlan")" />
-                <MudSelectItem Value="@("KH-Middlesboro")" />
-                <MudSelectItem Value="@("MH-Morgan Co")" />
-                <MudSelectItem Value="@("NH-OLOW")" />
-                <MudSelectItem Value="@("PD-Paintsville")" />
-                <MudSelectItem Value="@("SL-System - Lexington")" />
-                <MudSelectItem Value="@("SP-System - Pikeville")" />
-            </MudSelect>
+    <MudText Typo="Typo.h6">@Location</MudText>
 </MudItem>
 <MudItem>
-            <MudSelect T="string" Label="Device Type" AnchorOrigin="Origin.BottomCenter" @bind-Value="@DeviceType">
-                <MudSelectItem Value="@("DT-Desktop")" />
-                <MudSelectItem Value="@("LT-Laptop")" />
-            </MudSelect>
+    <MudText Typo="Typo.h6">@DepClin</MudText>
 </MudItem>
-    <MudItem>
-            <MudAutocomplete T="string" Label="Dept# & Clinic#" @bind-Value="Department" SearchFunc="@Search1"
-                         ResetValueOnEmptyText="@resetValueOnEmptyText"
-                         CoerceText="@coerceText" CoerceValue="@coerceValue"
-                         AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Error" />
-    </MudItem>
-<MudButton Class="mt-4" Variant="Variant.Filled" Style="background-color: #808080; color: white;" FullWidth="true" OnClick="BtnOnClick">Generate</MudButton>
+<MudItem>
+    <MudText Typo="Typo.h6">@Type</MudText>
+</MudItem>
+<MudButton Class="mt-4" Variant="Variant.Filled" Style="background-color: #808080; color: white;" FullWidth="true" OnClick="BtnOnClick">Decode</MudButton>
         </MudPaper>
     </MudItem>
-</MudGrid> 
+</MudGrid>  
  </MudContainer>
 @code {
     private string value1;
     public string Name { get; set; } = "Workstation 1";
-    public string Location { get; set; }
-    public string Department {get; set;}
-    public string DeviceType {get; set;}
+    public string Location { get; set; } = "Location";
+    public string LocDecoded {get; set;}
+    public string DepClin {get; set;} = "Dept# or Clinic#";
+    public string DepClinDecoded {get; set;}
+    public string Type {get; set;} = "Device Type";
+    public string TypeDecoded {get; set;}
     public string errorVis {get; set;} = "invisible";
+    public string error {get; set;} = "";
 
  private string[] Deps_Clinics =
     {
@@ -87,19 +68,116 @@
 
     private bool coerceText;
     private bool coerceValue;
+    
+
+    protected void decode()
+    {
+        switch(Location)
+        {
+            case "AH":
+                LocDecoded = "Beckley";
+            break;
+            case "BH":
+                LocDecoded = "Barbourville";
+            break;
+            case "CH":
+                LocDecoded = "Tug Valley";
+            break;
+            case "DH":
+                LocDecoded = "Highlands";
+            break;
+             case "EH":
+                LocDecoded = "McDowell";
+            break;
+             case "FH":
+                LocDecoded = "Hazard";
+            break;
+             case "GH":
+                LocDecoded = "Whitesburg";
+            break;
+             case "HH":
+                LocDecoded = "Mary Breck";
+            break;
+             case "IH":
+                LocDecoded = "Summers Co";
+            break;
+            case "JH":
+                LocDecoded = "Harlan";
+            break;
+            case "KH":
+                LocDecoded = "Middlesboro";
+            break;
+            case "MH":
+                LocDecoded = "Morgan Co";
+            break;
+            case "NH":
+                LocDecoded = "OLOW";
+            break;
+            case "PD":
+                LocDecoded = "Paintsville";
+            break;
+            case "SL":
+                LocDecoded = "System - Lexington";
+            break;
+            case "SP":
+                LocDecoded = "System - Pikeville";
+            break;
+
+        }
+        Location = LocDecoded;
+
+        switch(DepClin)
+        {
+            case "01":
+                DepClinDecoded = "Accounting";
+            break;
+            case "02":
+                DepClinDecoded = "Administration";
+            break;
+            case "03":
+                DepClinDecoded = "Accounts Payable";
+            break;
+            case "04":
+                DepClinDecoded = "Billing";
+            break;
+            case "05":
+                DepClinDecoded = "BioMed";
+            break;
+            case "06":
+                DepClinDecoded = "Cardiology Imaging";
+            break;
+        }
+        DepClin = DepClinDecoded;
+
+        switch(Type)
+        {
+            case "DT":
+                TypeDecoded = "Desktop";
+            break;
+            case "LT":
+                TypeDecoded = "Laptop";
+            break;
+        }
+        Type = TypeDecoded;
+    }
 
     protected void BtnOnClick()
     {
-        if(Location == null || Department == null || DeviceType == null)
+        if(Name == null || Name == "Workstation 1")
         {
             errorVis = "visible";
+            error = "Please ensure that you've entered a valid Workstation name and try again.";
             return;
         }
 
-        string abr = Location.Substring(0,2);
-        string deptAbr = Department.Substring(0,2);
-        string devType = DeviceType.Substring(0,2);
-        Name = abr + deptAbr + devType + "##";
+        
+        Location = Name.Substring(0,2);
+        DepClin = Name.Substring(2,2);
+        Type = Name.Substring(4,2);
+        
+
+        decode();
+
         errorVis = "invisible";
     }
 
