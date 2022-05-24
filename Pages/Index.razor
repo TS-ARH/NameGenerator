@@ -30,8 +30,21 @@
 </MudItem>
 <MudItem>
             <MudSelect T="string" Label="Device Type" AnchorOrigin="Origin.BottomCenter" @bind-Value="@DeviceType">
-                <MudSelectItem Value="@("DT-Desktop")" />
+                <MudSelectItem Value="@("DC-Desktop")" />
+                <MudSelectItem Value="@("DP-Provider Workstation")" />
+                <MudSelectItem Value="@("DW-Diagnostic Workstation")" />
+                <MudSelectItem Value="@("DX-Exam Room/Patient Room")" />
                 <MudSelectItem Value="@("LT-Laptop")" />
+                <MudSelectItem Value="@("PC-Printer/Copier/Fax")" />
+                <MudSelectItem Value="@("PL-Label Printer")" />
+                <MudSelectItem Value="@("PN-Printer")" />
+                <MudSelectItem Value="@("RX-Pharmacy Cabinet")" />
+                <MudSelectItem Value="@("SC-Networked Scanner")" />
+                <MudSelectItem Value="@("TB-Tracking Board")" />
+                <MudSelectItem Value="@("TL-Tablet")" />
+                <MudSelectItem Value="@("WM-Wall-Mount")" />
+                <MudSelectItem Value="@("WW-Workstation on Wheels")" />
+                
             </MudSelect>
 </MudItem>
     <MudItem>
@@ -55,7 +68,7 @@
 
  private string[] Deps_Clinics =
     {
-        "01-Accounting", "02-Administration", "03-Accounts Parable", "04-Billing",
+        "01-Accounting", "02-Administration", "03-Accounts Payable", "04-Billing",
         "05-BioMed", "06-Cardiology Imaging", "07-Case Management", "08-Compliance",
         "09-Cardio Pulmonary", "10-Cardiology", "11-Cardiovascular",
         "12-Central Supply", "13-Dialysis", "14-Doctors Lounge", "15-Emergency Department", "16-Enviornmental Services/Housekeeping",

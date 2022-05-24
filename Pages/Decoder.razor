@@ -146,16 +146,204 @@
             case "06":
                 DepClinDecoded = "Cardiology Imaging";
             break;
+            case "07":
+                DepClinDecoded = "Case Management";
+            break;
+            case "08":
+                DepClinDecoded = "Compliance";
+            break;
+            case "09":
+                DepClinDecoded = "Compliance";
+            break;
+            case "10":
+                DepClinDecoded = "Cardiology";
+            break;
+            case "11":
+                DepClinDecoded = "Cardiovascular";
+            break;
+            case "12":
+                DepClinDecoded = "Central Supply";
+            break;
+            case "13":
+                DepClinDecoded = "Dialysis";
+            break;
+            case "14":
+                DepClinDecoded = "Doctors Lounge";
+            break;
+            case "15":
+                DepClinDecoded = "Emergency Department";
+            break;
+            case "16":
+                DepClinDecoded = "Environmental Services/Housekeeping";
+            break;
+            case "17":
+                DepClinDecoded = "Education";
+            break;
+            case "18":
+                DepClinDecoded = "Finance";
+            break;
+            case "19":
+                DepClinDecoded = "Food & Nutritional Service";
+            break;
+            case "20":
+                DepClinDecoded = "Home Health";
+            break;
+            case "21":
+                DepClinDecoded = "Health Info Management";
+            break;
+            case "22":
+                DepClinDecoded = "Human Resources";
+            break;
+            case "23":
+                DepClinDecoded = "Intensive Care Unit";
+            break;
+            case "24":
+                DepClinDecoded = "Information Technology";
+            break;
+            case "25":
+                DepClinDecoded = "Laboratory";
+            break;
+            case "26":
+                DepClinDecoded = "LTACH Unit";
+            break;
+            case "27":
+                DepClinDecoded = "Med/Surg Unit-1st Floor";
+            break;
+            case "31":
+                DepClinDecoded = "Marketing";
+            break;
+            case "32":
+                DepClinDecoded = "Materials Management";
+            break;
+            case "33":
+                DepClinDecoded = "Med/Surg Unit";
+            break;
+            case "34":
+                DepClinDecoded = "Maintenance";
+            break;
+            case "35":
+                DepClinDecoded = "Nurse Administration";
+            break;
+            case "36":
+                DepClinDecoded = "Nursing Station";
+            break;
+            case "37":
+                DepClinDecoded = "Obstetrics";
+            break;
+            case "38":
+                DepClinDecoded = "Orthopedic";
+            break;
+            case "39":
+                DepClinDecoded = "Outpatient Rehab";
+            break;
+            case "40":
+                DepClinDecoded = "Operating Room";
+            break;
+            case "41":
+                DepClinDecoded = "Patient Access";
+            break;
+            case "42":
+                DepClinDecoded = "Plant Operations/Services";
+            break;
+            case "43":
+                DepClinDecoded = "Plant Operations/Services";
+            break;
+            case "44":
+                DepClinDecoded = "Physical Therapy";
+            break;
+            case "45":
+                DepClinDecoded = "Psych Unit";
+            break;
+            case "46":
+                DepClinDecoded = "Quality Management /Risk";
+            break;
+            case "47":
+                DepClinDecoded = "Rehabilitation Unit";
+            break;
+            case "48":
+                DepClinDecoded = "Radiology Imaging";
+            break;
+            case "49":
+                DepClinDecoded = "Respiratory Care";
+            break;
+            case "50":
+                DepClinDecoded = "Pharmacy";
+            break;
+            case "51":
+                DepClinDecoded = "Security";
+            break;
+            case "52":
+                DepClinDecoded = "Sleep Lab";
+            break;
+            case "53":
+                DepClinDecoded = "Sports Medicine";
+            break;
+            case "54":
+                DepClinDecoded = "School of Nursing";
+            break;
+            case "55":
+                DepClinDecoded = "Transition Care";
+            break;
+            case "56":
+                DepClinDecoded = "Training";
+            break;
+            case "57":
+                DepClinDecoded = "Volunteer Services";
+            break;
+            case "58":
+                DepClinDecoded = "Wound Care";
+            break;
+            case "59":
+                DepClinDecoded = "Women's Services";
+            break;
+            
+
         }
         DepClin = DepClinDecoded;
 
         switch(Type)
         {
-            case "DT":
+            case "DC":
                 TypeDecoded = "Desktop";
             break;
             case "LT":
                 TypeDecoded = "Laptop";
+            break;
+            case "DP":
+                TypeDecoded = "Provider Workstation";
+            break;
+            case "DW":
+                TypeDecoded = "Diagnostic Workstation";
+            break;
+            case "DX":
+                TypeDecoded = "Exam Room/Patient Room";
+            break;
+            case "PC":
+                TypeDecoded = "Printer/Copier/Fax";
+            break;
+            case "PL":
+                TypeDecoded = "Label Printer";
+            break;
+            case "PN":
+                TypeDecoded = "Printer";
+            break;
+            case "RX":
+                TypeDecoded = "Pharmacy Cabinet";
+            break;
+            case "SC":
+                TypeDecoded = "Networked Scanner";
+            break;
+            case "TB":
+                TypeDecoded = "Tracking Board";
+            break;
+            case "TL":
+                TypeDecoded = "Tablet";
+            break;
+            case "WM":
+                TypeDecoded = "Wall-Mount";
+            break;
+            case "WW":
+                TypeDecoded = "Workstation on Wheels";
             break;
         }
         Type = TypeDecoded;
@@ -163,7 +351,7 @@
 
     protected void BtnOnClick()
     {
-        if(Name == null || Name == "Workstation 1")
+        if(Name == null || Name == "Workstation 1" || Name == "")
         {
             errorVis = "visible";
             error = "Please ensure that you've entered a valid Workstation name and try again.";
