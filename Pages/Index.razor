@@ -54,7 +54,8 @@
             <MudAutocomplete T="string" Label="Dept# or Clinic#" @bind-Value="code" SearchFunc="@Search3"
                          ResetValueOnEmptyText="@resetValueOnEmptyText"
                          CoerceText="@coerceText" CoerceValue="@coerceValue"
-                         AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Error" />
+                         AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Error"
+                         MaxItems=null />
 </MudItem>
 <MudButton Class="mt-4" Variant="Variant.Filled" Style="background-color: #808080; color: white;" FullWidth="true" OnClick="BtnOnClick">Generate</MudButton>
         </MudPaper>
