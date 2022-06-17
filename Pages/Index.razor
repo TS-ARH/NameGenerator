@@ -1,4 +1,7 @@
 ﻿@page "/"
+@inject HttpClient Http
+
+
 <MudImage Style="display: block; margin-left: auto; margin-right: auto; width: 25%; height: 30%;" Src="https://www.arh.org/wp-content/uploads/2019/10/main-arh-logo-new.png" Alt="ARH Logo" Elevation="0"/>
 <MudAlert Severity="Severity.Error" Class=@errorVis>One or more fields are blank. Review your selections.</MudAlert>
  <MudContainer MaxWidth="MaxWidth.Medium">
@@ -47,12 +50,12 @@
                 
             </MudSelect>
 </MudItem>
-    <MudItem>
-            <MudAutocomplete T="string" Label="Dept# & Clinic#" @bind-Value="Department" SearchFunc="@Search1"
+     <MudItem>
+            <MudAutocomplete T="string" Label="Dept# or Clinic#" @bind-Value="code" SearchFunc="@Search3"
                          ResetValueOnEmptyText="@resetValueOnEmptyText"
                          CoerceText="@coerceText" CoerceValue="@coerceValue"
                          AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Error" />
-    </MudItem>
+</MudItem>
 <MudButton Class="mt-4" Variant="Variant.Filled" Style="background-color: #808080; color: white;" FullWidth="true" OnClick="BtnOnClick">Generate</MudButton>
         </MudPaper>
     </MudItem>
@@ -62,7 +65,8 @@
     private string value1;
     public string Name { get; set; } = "Workstation 1";
     public string Location { get; set; }
-    public string Department {get; set;}
+   //public string Department {get; set;}
+     public string code {get; set;}
     public string DeviceType {get; set;}
     public string errorVis {get; set;} = "invisible";
 
@@ -101,16 +105,45 @@
     private bool coerceText;
     private bool coerceValue;
 
+    List<TCode> listofCodes = new List<TCode>();
+
+  public class TCode
+  {
+    public string Code {get; set;}
+
+        public TCode(string code)
+    {
+        Code = code;
+    }
+
+  }
+
+     protected override async Task OnInitializedAsync()
+  {
+      string csvCode = await Http.GetStringAsync("sample-data/ClinicCodes.csv");
+       List<string> codeRows = csvCode.Split("\n").ToList();
+        for (int i = 0; i < codeRows.Count; i++)
+        {
+            if (i > 0)
+            {
+                 List<string> codeStringList = codeRows[i].Split(";").ToList(); 
+                 
+                 TCode codeOB = new TCode(codeStringList[0]);
+                listofCodes.Add(codeOB);
+            }
+        }
+  }
+
     protected void BtnOnClick()
     {
-        if(Location == null || Department == null || DeviceType == null)
+        if(Location == null || code == null || DeviceType == null)
         {
             errorVis = "visible";
             return;
         }
 
         string abr = Location.Substring(0,2);
-        string deptAbr = Department.Substring(0,2);
+        string deptAbr = code.Substring(0,2);
         string devType = DeviceType.Substring(0,2);
         Name = abr + deptAbr + devType + "##";
         errorVis = "invisible";
@@ -126,4 +159,16 @@
         return Deps_Clinics.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
     }
 
-}
+     private async Task<IEnumerable<string>> Search3(string value)
+    {
+        string[] stringList = listofCodes.Select(x => x.Code).ToArray();
+
+        await Task.Delay(5);
+
+        // if text is null or empty, don't return values (drop-down will not open)
+        if (string.IsNullOrEmpty(value))
+            return new string[0];
+        return stringList.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
+    }
+
+} 

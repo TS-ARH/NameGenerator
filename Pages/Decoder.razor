@@ -34,35 +34,6 @@
     public string errorVis {get; set;} = "invisible";
     public string error {get; set;} = "";
 
- private string[] Deps_Clinics =
-    {
-        "01-Accounting", "02-Administration", "03-Accounts Parable", "04-Billing",
-        "05-BioMed", "06-Cardiology Imaging", "07-Case Management", "08-Compliance",
-        "09-Cardio Pulmonary", "10-Cardiology", "11-Cardiovascular",
-        "12-Central Supply", "13-Dialysis", "14-Doctors Lounge", "15-Emergency Department", "16-Enviornmental Services/Housekeeping",
-        "17-Education", "18-Finance", "19-Food & Nutrional Service", "20-Home Health", "21-Health Information Management",
-        "22-Human Resources", "23-Intensive Care", "24-Information Technology", "25-Laboratory",
-        "26-LTACH Unit", "27-Med/Surg Unit-1st-Floor", "31-Marketing", "32-Material Management",
-        "33-Med/Surg Unit", "34-Maintenance", "35-Nurse Administration", "36-Nursing Station",
-        "37-Obstetrics", "38-Orthopedic", "39-Outpatient Rehab", "40-Operating Room",
-        "41-Patient Access", "42-Plant Operations/Services", "43-Payroll", "44-Physical Therapy",
-        "45-Psych Unit", "46-Quality Management /Risk", "47-Rehabilitation Unit", "48-Radiology Imaging", "49-Respiratory Care",
-        "50-Pharmacy", "51-Security", "52-Sleep Lab", "53-Sports Medicine",
-        "54-School of Nursing", "55-Transition Care", "56-Training", "57-Volunteer Services", "58-Wound Care",
-        "59-Women's Services ","AA-Beckley ARH HHA","AB-Beckley ARH HHA Logan Subunit","AH-Beckley ARH Hospital","AI-ARH Cardiology Assoc Beckley",
-        "AJ-Beckley ARH Primary Care","AK-Beckley ARH Urology Clinic","AL-ARH Oak Hill Primary Care Ctr","AM-Beckley ARH Medical Mall",
-        "AN-ARH Oncology Assoc Beckley","AO-ARH Southern WV Clinic","BB-Blood Bank","BH-Barbourville ARH Hospital","BI-Cumb Valley Surg Assoc Barb",
-        "BJ-Cumb Valley Med & Surg Assoc","BK-ARH Campus Health Center Union","BL-ARH CV Med & Surg- Pineville","BM-ARH CV Med & Surg Pineville",
-        "BN-ARH CV Med & Spec Assoc","BO-ARH CV Med & Spec Assoc-Corbin","CA-ARH Pike Co HHA","CH-Tug Valley ARH Reg Medical Ctr","CI-ARH Specialty Assoc Tug Valley",
-        "CJ-WFHC Tug Valley","CK-ARH Cardio Assoc Tug Valley","CM-ARH Medical Assoc Tug Valley","DA-Highlands ARH HHA","DH-Highlands ARH Reg Med Center",
-        "DI-ARH Med and Surg Assoc HLANDS","DJ-ARH Hometown Family Care","DK-ARH Med and Spec Assoc Ptville","DM-ARH Med and Spec Assoc HLANDS","EA-McDowell ARH HHA",
-        "EH-McDowell ARH","EI-McDowell Prof Services Clinic","EJ-ARH Family Care Wayland","EK-ARH Family Care Wheelwright","EL-ARH Lackey Clinic",
-        "EM-ARH McDowell Clinic","EN-ARH Family Care-Wayland","EO-ARH Family Care-Wheelwright","EP-ARH Med & Spec Assoc P-Burg","FA-Hazard ARH HHA",
-        "FH-Hazard Regional Medical Ctr","FI-ARH Bariatric Center","FJ-ARH Cardiology Hazard","FK-ARH Specialty Assoc Hazard","FL-Jackson ARH Specialty Clinic",
-        "FM-Hazard Family Health Center","FN-ARH Dermatology","FO-ARH Hazard Clinic","FP-ARH Pain Management/Headache","FQ-ARH Med & Spec Assoc Hazard","FR-ARH Med Mall Family Spec Clin",
-        "GA-Whitesburg ARH HHA","GH-Whitesburg ARH Hospital",
-
-    };
 
     private bool resetValueOnEmptyText;
 
@@ -461,6 +432,51 @@
             case "GH":
                 DepClinDecoded = "Whitesburg ARH Hospital";
             break;
+            case "HK":
+                DepClinDecoded = "Big Creek ARH Clinic";
+            break;
+            case "JD":
+                DepClinDecoded = "ARH Pennington Gap";
+            break;
+            case "ML":
+                DepClinDecoded = "Family Care- Salyersville UC";
+            break;
+            case "NI":
+                DepClinDecoded = "OLOW Primary Care Associates";
+            break;
+            case "NJ":
+                DepClinDecoded = "OLOW Primary Care Associates";
+            break;
+            case "NL":
+                DepClinDecoded = "OLOW Medical and Specialty Associates  - Harold";
+            break;
+            case "PI":
+                DepClinDecoded = "Paintsville Surgical Associates";
+            break;
+            case "PJ":
+                DepClinDecoded = "Paintsville Medical & Specialty Assoc  - 604 S. Mayo";
+            break;
+            case "PK":
+                DepClinDecoded = "Paintsville Family Health & Specialty Clinic 520";
+            break;
+            case "PL":
+                DepClinDecoded = "Paintsville Wound Healing Center";
+            break;
+            case "PM":
+                DepClinDecoded = "Paintsville Family Care -  607 S. Mayo";
+            break;
+            case "PN":
+                DepClinDecoded = "Paintsville Primary Care - 828 S. Mayo";
+            break;
+            case "PO":
+                DepClinDecoded = "Paintsville Family Health & Specialty Clinic 520";
+            break;
+            case "TH":
+                DepClinDecoded = "Tri City Medical Center";
+            break;
+
+
+
 
             
 
@@ -533,16 +549,6 @@
         decode();
 
         errorVis = "invisible";
-    }
-
-        private async Task<IEnumerable<string>> Search1(string value)
-    {
-        await Task.Delay(5);
-
-        // if text is null or empty, don't return values (drop-down will not open)
-        if (string.IsNullOrEmpty(value))
-            return new string[0];
-        return Deps_Clinics.Where(x => x.Contains(value, StringComparison.InvariantCultureIgnoreCase));
     }
 
 }
