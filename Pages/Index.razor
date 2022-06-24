@@ -37,6 +37,7 @@
                 <MudSelectItem Value="@("DP-Provider Workstation")" />
                 <MudSelectItem Value="@("DW-Diagnostic Workstation")" />
                 <MudSelectItem Value="@("DX-Exam Room/Patient Room")" />
+                <MudSelectItem Value="@("LP-Provider Laptop")" />
                 <MudSelectItem Value="@("LT-Laptop")" />
                 <MudSelectItem Value="@("PC-Printer/Copier/Fax")" />
                 <MudSelectItem Value="@("PL-Label Printer")" />
@@ -57,7 +58,7 @@
                          AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Error"
                          MaxItems=null />
 </MudItem>
-<MudButton Class="mt-4" Variant="Variant.Filled" Style="background-color: #808080; color: white;" FullWidth="true" OnClick="BtnOnClick">Generate</MudButton>
+<MudButton Class="mt-4" Variant="Variant.Filled" Style="background-color: #808080; color: white;" FullWidth="true" OnClick="BtnOnClick" @onkeydown="Enter">Generate</MudButton>
         </MudPaper>
     </MudItem>
 </MudGrid> 
@@ -118,6 +119,14 @@
     }
 
   }
+
+  public void Enter(KeyboardEventArgs e)
+{
+    if (e.Code == "Enter")
+    {
+       BtnOnClick();
+    }
+}
 
      protected override async Task OnInitializedAsync()
   {
